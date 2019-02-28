@@ -89,6 +89,10 @@ class FirestoreClient {
     opts.scopes = this.constructor.scopes;
     const gaxGrpc = new gax.GrpcClient(opts);
 
+    // TODO
+    const cred = gaxGrpc.grpc.credentials.createInsecure();
+    opts.sslCreds = cred;
+
     // Save the auth object to the client, for use by other methods.
     this.auth = gaxGrpc.auth;
 
@@ -196,14 +200,14 @@ class FirestoreClient {
    * The DNS address for this API service.
    */
   static get servicePath() {
-    return 'firestore.googleapis.com';
+    return 'localhost';
   }
 
   /**
    * The port for this API service.
    */
   static get port() {
-    return 443;
+    return 8080;
   }
 
   /**
